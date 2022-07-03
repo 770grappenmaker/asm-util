@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.7.0"
+    `maven-publish`
 }
 
 group = "com.grappenmaker"
@@ -16,4 +17,16 @@ dependencies {
     api("org.ow2.asm:asm:$asmVersion")
     api("org.ow2.asm:asm-commons:$asmVersion")
     api("org.ow2.asm:asm-util:$asmVersion")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.grappenmaker"
+            artifactId = "asm-util"
+            version = version
+
+            from(components["kotlin"])
+        }
+    }
 }
